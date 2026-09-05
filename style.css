@@ -778,12 +778,6 @@ h1 {
     flex-shrink: 0;
 }
 
-.github {
-    background: rgba(255, 255, 255, 0.08);
-
-    color: #fff;
-}
-
 .email {
     background: rgba(110, 80, 255, 0.12);
 
