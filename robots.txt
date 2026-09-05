@@ -1,0 +1,12 @@
+User-Agent: *
+Allow: /
+
+# ==========================================
+# security.txt? Não.
+# robots.txt? Sim.
+#
+# Se você está lendo isso durante um scan:
+# parabéns, o scan funcionou.
+#
+# Agora pode voltar para o Nmap :)
+# ==========================================
