@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/png" href="./public/favicon.ico">
+
     <title>404 - Página não encontrada</title>
 
     <style>
@@ -86,14 +88,15 @@
             ou foi movida.
         </p>
 
-        <div class="path">
-            <script>console.log(window.location.pathname);</script>
-        </div>
-
+        <div class="path" id="path"></div>
+        
         <a href="index.html">
             Voltar para o início
         </a>
 
+        <script>
+            document.getElementById("path").textContent = window.location.pathname;
+        </script>
     </main>
 </body>
 </html>
