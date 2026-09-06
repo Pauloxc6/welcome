@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo v2.4 - Acesso Restrito</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 flex items-center justify-center min-h-screen p-4 font-mono">
+
+    <!-- Card de Login (Bait) -->
+    <div id="login-card" class="w-full max-w-md bg-slate-800 border border-slate-700 rounded-xl p-8 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-amber-500 to-red-500"></div>
+        
+        <div class="text-center mb-6">
+            <i class="fa-solid fa-user-shield text-4xl text-amber-500 mb-2"></i>
+            <h1 class="text-xl font-bold tracking-widest text-white uppercase">Área Restrita</h1>
+            <p class="text-xs text-slate-400 mt-1">Gerenciamento de Planos & Serviços</p>
+        </div>
+
+        <form id="honey-form" onsubmit="triggerTrap(event)" class="space-y-4">
+            <div>
+                <label class="block text-xs uppercase text-slate-400 mb-1">Usuário / E-mail</label>
+                <input type="text" id="username" placeholder="admin" required class="w-full bg-slate-950 border border-slate-700 rounded p-2.5 text-sm focus:outline-none focus:border-amber-500 text-amber-400">
+            </div>
+
+            <div>
+                <label class="block text-xs uppercase text-slate-400 mb-1">Senha</label>
+                <input type="password" id="password" placeholder="••••••••" required class="w-full bg-slate-950 border border-slate-700 rounded p-2.5 text-sm focus:outline-none focus:border-amber-500 text-amber-400">
+            </div>
+
+            <button type="submit" class="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 rounded transition-all uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                <i class="fa-solid fa-key"></i> Autenticar
+            </button>
+        </form>
+
+        <div id="console-output" class="mt-4 p-3 bg-slate-950 border border-slate-800 rounded text-xs text-emerald-400 hidden font-mono">
+            <!-- Saída dinâmica do script -->
+        </div>
+    </div>
+
+    <!-- Tela do Honeypot (Escondida por padrão) -->
+    <div id="troll-screen" class="hidden text-center max-w-2xl bg-slate-950 border border-red-500/40 p-8 rounded-2xl shadow-2xl">
+        <div class="text-red-500 text-6xl mb-4 animate-bounce">
+            <i class="fa-solid fa-bug"></i>
+        </div>
+        <h1 class="text-3xl font-extrabold text-red-500 mb-2">HONEYPOT DETECTADO!</h1>
+        <p class="text-slate-300 mb-6">Esta rota administrativa é uma armadilha. Todos os seus dados de conexão foram gravados.</p>
+        
+        <div class="bg-slate-900 p-4 rounded-lg border border-slate-800 text-left font-mono text-xs text-slate-400 mb-6 space-y-2">
+            <p><span class="text-red-400">[!] ALVO:</span> /admin.html</p>
+            <p><span class="text-amber-400">[!] PAYLOAD:</span> <span id="captured-payload" class="text-white"></span></p>
+            <p><span class="text-emerald-400">[!] USER AGENT:</span> <span id="captured-ua"></span></p>
+            <p><span class="text-blue-400">[!] STATUS:</span> Telemetria enviada com sucesso ao administrador. 🕵️‍♂️</p>
+        </div>
+
+        <a href="/" class="inline-block bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-2.5 rounded-lg transition-all text-sm">
+            Voltar para a página inicial
+        </a>
+    </div>
+
+    <script src="assets/js/runtime.js"></script>
+</body>
+</html>
