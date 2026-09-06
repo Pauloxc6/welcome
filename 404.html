@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="image/png" href="/public/favicon.ico">
+    <link rel="icon" type="image/png" href="/welcome/public/favicon.ico">
 
-    <title>404 - Página não encontrada</title>
+    <title>404 - Comando não encontrado</title>
 
     <style>
         * {
@@ -15,88 +15,342 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg: #0d1117;
+            --text: #f0f6fc;
+            --muted: #8b949e;
+            --border: #30363d;
+            --green: #3fb950;
+            --green-dark: #238636;
+            --blue: #58a6ff;
+            --red: #f85149;
+        }
+
         body {
             min-height: 100vh;
+
             display: flex;
             align-items: center;
             justify-content: center;
 
-            background: #0d1117;
-            color: #f0f6fc;
+            background: var(--bg);
+            color: var(--text);
 
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:
+                "JetBrains Mono",
+                "Fira Code",
+                Consolas,
+                monospace;
+
+            padding: 20px;
         }
 
         .container {
-            text-align: center;
-            padding: 40px 20px;
+            width: min(700px, 100%);
         }
 
+        /* TERMINAL */
+
+        .terminal {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            background: #010409;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, .4);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 12px 15px;
+
+            border-bottom: 1px solid var(--border);
+
+            background: #161b22;
+        }
+
+        .dot {
+            width: 11px;
+            height: 11px;
+
+            border-radius: 50%;
+        }
+
+        .dot.red {
+            background: #ff5f56;
+        }
+
+        .dot.yellow {
+            background: #ffbd2e;
+        }
+
+        .dot.green {
+            background: #27c93f;
+        }
+
+        .terminal-title {
+            margin-left: 8px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        .terminal-body {
+            padding: 35px 30px;
+        }
+
+        /* 404 */
+
         .code {
-            font-size: 120px;
+            color: var(--blue);
+
+            font-size: clamp(80px, 15vw, 130px);
+
             font-weight: 800;
+
             line-height: 1;
-            color: #58a6ff;
+
             letter-spacing: -8px;
+
+            margin-bottom: 20px;
+        }
+
+        .command {
+            color: var(--green);
+
+            font-size: 14px;
+
+            margin-bottom: 10px;
+
+            word-break: break-all;
+        }
+
+        .command::before {
+            content: "└─╼ ";
+
+            color: var(--muted);
+        }
+
+        .error {
+            color: var(--red);
+
+            font-size: 14px;
+
+            margin-bottom: 25px;
         }
 
         h1 {
-            margin-top: 20px;
-            font-size: 32px;
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 28px;
+
+            margin-bottom: 10px;
         }
 
-        p {
-            margin-top: 12px;
-            color: #8b949e;
-            font-size: 16px;
+        .description {
+            color: var(--muted);
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 15px;
+
+            line-height: 1.6;
         }
+
+        /* PATH */
+
+        .path {
+            margin-top: 25px;
+
+            padding: 12px 15px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 6px;
+
+            color: #6e7681;
+
+            font-size: 13px;
+
+            overflow-wrap: anywhere;
+        }
+
+        .path span {
+            color: var(--blue);
+        }
+
+        /* BUTTON */
 
         a {
             display: inline-block;
-            margin-top: 30px;
-            padding: 12px 22px;
 
-            background: #238636;
+            margin-top: 25px;
+
+            padding: 11px 20px;
+
+            background: var(--green-dark);
+
             color: white;
 
             text-decoration: none;
+
             border-radius: 6px;
 
-            transition: 0.2s ease;
+            font-size: 14px;
+
+            transition:
+                transform .2s ease,
+                background .2s ease;
         }
 
         a:hover {
             background: #2ea043;
+
             transform: translateY(-2px);
         }
 
-        .path {
-            margin-top: 20px;
-            font-family: monospace;
-            color: #6e7681;
-            font-size: 14px;
+        /* FOOTER */
+
+        footer {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid var(--border);
+
+            color: #555;
+
+            font-size: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        footer span:first-child {
+            color: var(--green-dark);
+        }
+
+        /* CURSOR */
+
+        .cursor {
+            display: inline-block;
+
+            width: 7px;
+            height: 15px;
+
+            margin-left: 4px;
+
+            background: var(--green);
+
+            vertical-align: middle;
+
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 45% {
+                opacity: 1;
+            }
+
+            46%, 100% {
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .terminal-body {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+
+            .code {
+                letter-spacing: -5px;
+            }
         }
     </style>
 </head>
 
 <body>
+
     <main class="container">
-        <div class="code">404</div>
-        <h1>Página não encontrada</h1>
-        <p>
-            A página que você está procurando não existe
-            ou foi movida.
-        </p>
 
-        <div class="path" id="path"></div>
-        
-        <a href="/">
-            Voltar para o início
-        </a>
+        <section class="terminal">
 
-        <script>
-            document.getElementById("path").textContent = window.location.pathname;
-        </script>
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+
+                <span class="terminal-title">
+                    pauloxc6@github-pages
+                </span>
+            </div>
+
+            <div class="terminal-body">
+
+                <div class="code">404</div>
+
+                <div class="command" id="command">
+                    cat <span id="path-command"></span>
+                </div>
+
+                <div class="error">
+                    cat: arquivo ou diretório inexistente
+                </div>
+
+                <h1>
+                    Opa! Essa página fugiu do servidor. <span class="cursor"></span>
+                </h1>
+
+                <p class="description">
+                    O caminho que você tentou acessar não existe,
+                    foi movido ou simplesmente decidiu tirar férias.
+                </p>
+
+                <div class="path">
+                    caminho solicitado:
+                    <span id="path"></span>
+                </div>
+
+                <a href="/welcome/">
+                    Voltar para o início
+                </a>
+
+            </div>
+
+        </section>
+
+        <footer>
+            <span>~/pauloxc6</span>
+            <span>•</span>
+            <span>Built with Linux &lt;3 @2026</span>
+        </footer>
+
     </main>
+
+    <script>
+        const path = window.location.pathname;
+
+        document.getElementById("path").textContent = path;
+
+        document.getElementById("path-command").textContent = path;
+    </script>
+
 </body>
 </html>
