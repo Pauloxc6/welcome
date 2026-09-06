@@ -31,7 +31,6 @@
     --radius: 14px;
 }
 
-
 /* ================================
    BODY
 ================================ */
@@ -56,7 +55,8 @@ body {
         monospace;
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     padding: 40px 20px;
 }
@@ -229,6 +229,159 @@ h1 {
     margin-top: 25px;
 }
 
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+    width: 100%;
+    max-width: 1100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+    padding: 16px 22px;
+
+    background: #0b0b0b;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    position: relative;
+    z-index: 1000;
+}
+
+
+/* ================================
+   NAV LOGO
+================================ */
+
+.nav-logo {
+    color: var(--green);
+
+    font-size: 14px;
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
+}
+
+.nav-logo:hover {
+    color: #00ffaa;
+
+    text-shadow:
+        0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+
+/* ================================
+   NAV LINKS
+================================ */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.nav-links a {
+    position: relative;
+
+    padding: 8px 12px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    text-decoration: none;
+
+    border-radius: 6px;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--green);
+
+    background: rgba(0, 255, 136, 0.05);
+}
+
+
+/* ================================
+   ACTIVE
+================================ */
+
+.nav-links a.active {
+    color: var(--green);
+
+    background: rgba(0, 255, 136, 0.08);
+}
+
+.nav-links a.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 12px;
+    right: 12px;
+    bottom: 3px;
+
+    height: 1px;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 8px rgba(0, 255, 136, 0.5);
+}
+
+
+/* ================================
+   NAV RESPONSIVE
+================================ */
+
+@media (max-width: 750px) {
+
+    .navbar {
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 15px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .navbar {
+        margin-bottom: 20px;
+    }
+
+    .nav-links {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        width: 100%;
+    }
+
+    .nav-links a {
+        text-align: center;
+    }
+}
 
 /* ================================
    CARDS
