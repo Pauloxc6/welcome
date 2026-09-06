@@ -1,9 +1,99 @@
-<h1>404</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<p>
-    Você encontrou uma página que não existe.
-</p>
+    <title>404 - Página não encontrada</title>
 
-<p>
-    Ou talvez tenha sido o scanner 👀
-</p>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #0d1117;
+            color: #f0f6fc;
+
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .code {
+            font-size: 120px;
+            font-weight: 800;
+            line-height: 1;
+            color: #58a6ff;
+            letter-spacing: -8px;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 32px;
+        }
+
+        p {
+            margin-top: 12px;
+            color: #8b949e;
+            font-size: 16px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 22px;
+
+            background: #238636;
+            color: white;
+
+            text-decoration: none;
+            border-radius: 6px;
+
+            transition: 0.2s ease;
+        }
+
+        a:hover {
+            background: #2ea043;
+            transform: translateY(-2px);
+        }
+
+        .path {
+            margin-top: 20px;
+            font-family: monospace;
+            color: #6e7681;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <div class="code">404</div>
+        <h1>Página não encontrada</h1>
+        <p>
+            A página que você está procurando não existe
+            ou foi movida.
+        </p>
+
+        <div class="path">
+            <script>console.log(window.location.pathname);</script>
+        </div>
+
+        <a href="index.html">
+            Voltar para o início
+        </a>
+
+    </main>
+</body>
+</html>
