@@ -10,3 +10,5 @@ Allow: /
 #
 # Agora pode voltar para o Nmap :)
 # ==========================================
+
+Sitemap: https://pauloxc6.github.io/welcome/public/sitemap.xml

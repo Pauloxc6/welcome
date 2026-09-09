@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home / Página Inicial -->
+  <url>
+    <loc>https://pauloxc6.github.io/welcome/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Seções Principais -->
+  <url>
+    <loc>https://pauloxc6.github.io/welcome/artigos/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://pauloxc6.github.io/welcome/cursos/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pauloxc6.github.io/welcome/contato.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Páginas Legais -->
+  <url>
+    <loc>https://pauloxc6.github.io/welcome/privacidade.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://pauloxc6.github.io/welcome/termos.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
