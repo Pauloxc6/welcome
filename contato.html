@@ -52,14 +52,14 @@
 
 	<body>
 		<header class="navbar">
-		    <a href="index.html" class="nav-logo">paulo@portfolio:~$</a>
+		    <a href="index.html" class="nav-logo">paulo@portfolio:~/contato$</a>
 
 		    <nav class="nav-links">
 		        <a href="index.html">Home</a>
 		        <a href="">Artigos</a>
 		        <a href="index.html#repositories">GitHub</a>
 		        <a href="cursos/index.html" class="active">Cursos</a>
-		        <a href="index.html#contact">Contato</a>
+		        <a href="contato.html">Contato</a>
 		    </nav>
 		</header>
 
@@ -84,7 +84,7 @@
 			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash">
 			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
 			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud">
-						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS">
 			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
 			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
 			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
@@ -93,92 +93,22 @@
 			    </div>
 			</section>
 
-			<section class="stats">
-			    <div class="card">
-			        <img src="https://ghstats.dev/api/card?username=Pauloxc6&theme=radical" alt="GitHub Stats">
-			    </div>
-
-			    <div class="card">
-			        <img src="https://ghstats.dev/api/langs?username=Pauloxc6&max_langs=5&layout=donut_vertical" alt="Top Languages">
-			    </div>
-			</section>
-
-			<section class="repositories">
-			    <div class="section-title">
-				<span>paulo@github</span>:~$ ls repositories/
-			    </div>
-			    <div id="repositories" class="repo-grid">
-				<p>Carregando repositórios...</p>
-			    </div>
-			    <a
-				href="https://github.com/Pauloxc6?tab=repositories"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="all-repositories"
-			    >
-				Ver todos os repositórios →
-			    </a>
-			</section>
-
-			<script src="assets/js/github.js"></script>
-
-			<section class="social"> 
-				<a href="https://www.instagram.com/pauloxc6/" target="_blank" rel="noopener noreferrer" class="social-card"> 
-					<div class="social-icon instagram"> <span>◎</span> </div>
-					 <div class="social-info"> 
-						<strong>Instagram</strong> <small>@pauloxc6</small> 
-					</div> 
-
-					<span class="arrow">→</span> 
-				</a> 
-
-				<a href="https://www.instagram.com/pauloxc61/" target="_blank" rel="noopener noreferrer" class="social-card"> 
-					<div class="social-icon instagram-alt"> <span>◎</span> </div> 
-					<div class="social-info"> 
-						<strong>Instagram</strong> <small>@pauloxc61</small> 
-					</div> 
-					
-					<span class="arrow">→</span> 
-				</a> 
-
-				<a href="https://tryhackme.com/r/p/Pauloxc6" target="_blank" rel="noopener noreferrer" class="social-card"> 
-					<div class="social-icon tryhackme"> <span>⌁</span> </div> 
-					<div class="social-info">
-						 <strong>TryHackMe</strong> <small>Pauloxc6</small> 
-					</div> 
-
-					<span class="arrow">→</span> 
-
-				</a> 
-
-				<a href="https://www.tiktok.com/@Pauloxc6" target="_blank" rel="noopener noreferrer" class="social-card"> 
-					<div class="social-icon tiktok"> <span>♪</span> </div> <div class="social-info">
-						 <strong>TikTok</strong> <small>@Pauloxc6</small>
-					 </div> 
-					<span class="arrow">→</span>
-				</a> 
-			</section>
-
 			<section class="contact">
-			    <div class="contact-title">
-				<span>paulo@github</span>:~$ contact
-			    </div>
-			    <div class="contact-links">
-				<a
-				    href="mailto:paulo8756sp1@proton.me"
-				    class="contact-card"
-				>
-				    <div class="contact-icon email">
-					@
-				    </div>
 
-				    <div class="contact-info">
-					<strong>E-mail</strong>
-					<small>paulo8756sp1@proton.me</small>
-				    </div>
-				    <span class="contact-arrow">→</span>
-				</a>
-			    </div>
+				<div class="contact-title">
+					<span>paulo@github</span>:~$ contact
+				</div>
+
+				<form class="enviar-contato">
+					<input type="text" name="nome" placeholder="Nome" autocomplete="name" required>
+
+					<input type="email" name="email" id="email" placeholder="E-mail" autocomplete="email" required>
+
+					<textarea name="mensagem" id="mensagem" rows="8" placeholder="Digite sua mensagem..." required></textarea>
+
+					<button type="submit">enviar →</button>
+				</form>
+
 			</section>
 
 			<footer>
@@ -191,7 +121,6 @@
 					<a href="privacidade.html">Política de Privacidade</a>
 				</div>
 			</footer>
-
 	    </main>
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q71QZDFR70"></script>
