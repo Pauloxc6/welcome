@@ -1,0 +1,98 @@
+/* TERMINAL */
+
+.terminal-container {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #010409;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+    background: #161b22;
+}
+
+.dot {
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+}
+
+.dot.red {
+    background: #ff5f56;
+}
+
+.dot.yellow {
+    background: #ffbd2e;
+}
+
+.dot.green {
+    background: #27c93f;
+}
+
+.terminal-title {
+    margin-left: 8px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.terminal-body {
+    padding: 35px 30px;
+    bottom: auto;
+    text-align: left !important;
+}
+
+.terminal-body pre {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace; /* ou sua fonte de código preferida */
+}
+
+.terminal-body code {
+    color: #e6edf3; /* Cor do texto do terminal */
+    font-size: 14px;
+    display: block;
+}
+
+.description {
+    color: var(--muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.code-block {
+    display: block;
+    font-family: monospace;
+    white-space: normal; /* Ignora os tabs/espaços de indentação do HTML */
+    text-align: left;
+}
+
+/* Animations */
+
+@keyframes blink {
+    0%, 45% {
+        opacity: 1;
+    }
+
+    46%, 100% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .terminal-body {
+        padding: 25px 20px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+}

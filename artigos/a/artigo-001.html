@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	    <title>Paulo Santos | Developer & Cybersecurity</title>
+
+	    <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/artigos/artigos.css">
+		<link rel="stylesheet" href="/artigos/assets/base.css">
+	    <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+	    <link rel="icon" type="image/png" href="/public/favicon.ico">
+	    <link rel="manifest" href="/public/site.webmanifest">
+
+	    <meta name="description" content="Neste artigo irei mostrar o poder do bash em automações de tarefas de recon e enumeração de serviços.">
+	    <meta name="keywords" content="Paulo Santos, desenvolvedor, programação, Linux, cybersecurity, segurança da informação, pentest, redes, Bash, Python, PHP, Docker, Git">
+
+	    <meta name="author" content="Paulo Santos">
+
+	    <meta name="robots" content="index, follow">
+
+	    <meta name="language" content="pt-BR">
+
+	    <!-- Canonical -->
+	    <link rel="canonical" href="https://pauloxc6.github.io/">
+
+	    <!-- Open Graph -->
+	    <meta property="og:type" content="website">
+	    <meta property="og:title" content="Paulo Santos | Desenvolvedor & Cybersecurity">
+	    <meta property="og:description" content="Portfólio, projetos e experiências com programação, Linux, redes e segurança da informação.">
+	    <meta property="og:url" content="https://pauloxc6.github.io/">
+	    <meta property="og:site_name" content="Paulo Santos">
+
+	    <!-- Twitter / X -->
+	    <meta name="twitter:card" content="summary">
+	    <meta name="twitter:title" content="Paulo Santos | Desenvolvedor & Cybersecurity">
+	    <meta name="twitter:description" content="Portfólio de Paulo Santos — programação, Linux, redes e segurança da informação.">
+
+	    <!-- Tema do navegador -->
+	    <meta name="theme-color" content="#050505">
+		
+		<!-- Google recaptcha -->
+  		<script src="https://www.google.com/recaptcha/enterprise.js?render=6Ld63astAAAAAGvJQuIdii29S-Kse1_VtAWglQcY"></script>
+
+  		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-W9CK8HSD');</script>
+		<!-- End Google Tag Manager -->
+	</head>
+
+	<body>
+		<header class="navbar">
+		    <a href="index.html" class="nav-logo">paulo@portfolio:~$</a>
+
+		    <nav class="nav-links">
+		        <a href="/index.html">Home</a>
+		        <a href="/artigos/index.html" class="active">Artigos</a>
+		        <a href="/index.html#repositories">GitHub</a>
+		        <a href="/cursos/index.html">Cursos</a>
+		        <a href="/contato.html">Contato</a>
+		    </nav>
+		</header>
+
+	    <main class="container">
+			<section class="hero">
+			    <div class="tux">
+			        <img src="https://media.tenor.com/bhewUhwCTYYAAAAj/tux-linux-tux.gif" alt="Tux Linux" >
+			    </div>
+
+			    <div class="content">
+			        <p class="terminal">
+			            <span>paulo@github</span>:~$ whoami
+			        </p>
+
+			        <h1>Paulo Cezar Santos</h1>
+
+			        <p class="description">
+			            Desenvolvedor • Linux • Redes • Cybersecurity
+			        </p>
+
+			        <div class="tech-stack">
+			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash">
+			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS">
+			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+			            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite">
+			        </div>
+			    </div>
+			</section>
+
+            <section class="artigo-page">
+			
+                <p class="terminal"><span>paulo@artigos</span>:~/artigos/a/tools-bash$ ls</p>
+
+                <h1>Ferramentas<span> úteis com bash</span></h1>
+
+                <p class="artigo-updated">Última atualização: 09/09/2026</p>
+
+                <section class="artigo-section">
+					<p>
+						Neste artigo irei mostrar o poder do bash em automações de tarefas de recon e enumeração de serviços. <br><br>
+						O bash se torna poderoso nas mãos certas. Não existe a melhor forma de se escrever um código, mas sim aquele que funciona perfeitamente para você. <br><br>
+					</p>
+
+					<br>
+
+					<h2>Brute force de subdomínios</h2>
+
+					<p>
+						Como início, mostrarei o mais básico que podemos fazer com bash: um simples brute force de subdomínios. <br><br>
+						Mas antes, precisamos entender como funciona a estrutura de uma URL (Uniform Resource Locator): <br><br>
+						<img class="img" src="/artigos/assets/imgs/url.jpg" alt="url" >
+						<br><br>
+						<ul class="url-parts">
+							<li><strong>Protocolo:</strong> Define as regras de segurança e comunicação para transferir os dados entre o navegador e o servidor (ex: <code>https://</code>).</li>
+							<li><strong>Subdomínio:</strong> Um prefixo adicionado ao domínio principal para organizar ou separar seções específicas do site (ex: <code>blog.</code>).</li>
+							<li><strong>Nome do domínio:</strong> O nome principal e exclusivo que identifica o seu site na internet (ex: <code>example</code>).</li>
+							<li><strong>TLD (Domínio de Nível Superior):</strong> A extensão final do domínio que indica a categoria ou país do site (ex: <code>.com</code> ou <code>.br</code>).</li>
+							<li><strong>Caminho:</strong> A rota completa dentro do servidor que direciona para onde a página ou arquivo está localizado.</li>
+							<li><strong>Subpasta:</strong> O diretório específico dentro do servidor onde o conteúdo está armazenado (ex: <code>/resources/</code>).</li>
+							<li><strong>Recurso:</strong> A página, arquivo ou slug final exato que está sendo acessado (ex: <code>/new-example</code>).</li>
+							<li><strong>Parâmetros:</strong> Informações extras enviadas à página após a interrogação (<code>?</code>), usadas para busca, filtros ou rastreamento (ex: <code>?key1=value</code>).</li>
+							<li><strong>Ancoragem:</strong> Aponta para uma seção específica dentro da própria página usando o caractere cerquilha (<code>#faq</code>).</li>
+						</ul>
+						<br>
+					</p>
+					
+					<p>
+						Após entendermos como funciona a estrutura básica de uma URL, vamos para nosso primeiro script: <br><br>
+						<!-- Terminal Exemplo -->
+						<section class="terminal-container">
+							
+							<div class="terminal-header">
+								<span class="dot red"></span>
+								<span class="dot yellow"></span>
+								<span class="dot green"></span>
+								
+								<span class="terminal-title">
+									pauloxc6@github-pages
+							    </span>
+						    </div>
+						
+							<div class="terminal-body">
+								<p class="description">
+									<code class="code-block">
+										#!/usr/bin/env bash<br><br>
+										url="$1"<br>
+										wordlist="$2"<br><br>
+
+										for sub in "$(cat ${wordlist})";do<br>
+										&emsp; host "${sub}"."${dominio}" | grep "has address"<br>
+										done <br><br>
+										
+										Uso: <br>
+										user@localhost:~$ bash sub.sh "dominio.com" list.txt
+									</code>
+								</p>
+							</div>
+						</section>
+						<br>
+						<h2><span class="">Explicação:</span></h2>
+
+						<p>
+							O script inicia definindo o hashbang (shebang), que identifica qual interpretador de shell será utilizado para executar o código. <br><br>
+
+							Logo em seguida, utiliza o parser de argumentos do próprio bash para armazenar a URL e a wordlist recebidas no terminal em duas variáveis (`url` e `wordlist`). <br><br>
+
+							Na sequência, o loop `for` percorre cada linha da wordlist utilizando a substituição de comando `$(cat ...)` para armazenar o termo atual na variável `sub`. Para cada iteração, o comando `host` realiza a consulta DNS concatenando o subdomínio ao domínio principal, enquanto o `grep "has address"` filtra a saída exibindo apenas os subdomínios válidos que resolveram para um endereço IP.
+						</p>
+					</p>
+
+					<br><hr class="br-hl"><br>
+
+					<h2>Pesquisa Reversa de IPS</h2>
+
+					<p>
+						Como vimos no tópico anterior, é bem fácil descobrir o IP atrelado a um domínio ou subdomínio.<br><br>
+						Podemos seguir a lógica inversa: em vez de tentarmos descobrir o IP a partir de um DNS, faremos o processo contrário. Por meio de uma consulta reversa, conseguimos descobrir o domínio (ou subdomínio) atrelado a um determinado endereço IP. <br><br>
+
+						<!-- Terminal Exemplo 2-->
+						<section class="terminal-container">
+							
+							<div class="terminal-header">
+								<span class="dot red"></span>
+								<span class="dot yellow"></span>
+								<span class="dot green"></span>
+								
+								<span class="terminal-title">
+									pauloxc6@github-pages
+							    </span>
+						    </div>
+						
+							<div class="terminal-body">
+								<p class="description">
+									<code class="code-block">
+										#!/usr/bin/env bash<br><br>
+										ip="$1"<br><br>
+
+										for i in {1..254};do<br>
+										&emsp; host "$ip"."$i"<br>
+										done <br><br>
+										
+										Uso: <br>
+										user@localhost:~$ bash revip.sh "1.1.1"
+									</code>
+								</p>
+							</div>
+						</section>
+					</p>
+					<br>
+					<h2><span class="">Explicação:</span></h2>
+
+					<p>
+						O script realiza uma varredura de DNS reverso (Reverse DNS Lookup) em um bloco /24 de endereços IP. <br><br>
+
+						Ele recebe como argumento os três primeiros octetos de uma rede (ex: 1.1.1) e armazena o valor na variável ip. Em seguida, o loop for itera do número 1 ao 254, completando o quarto octeto. <br><br>
+
+						A cada repetição, o comando host faz uma requisição PTR consultando o endereço IP montado (ex: 1.1.1.1 até 1.1.1.254) para retornar o Nome de Domínio Totalmente Qualificado (FQDN) associado a cada host daquela sub-rede.
+					</p>
+
+					<br><hr class="br-hl"><br>
+
+					<h2>Transferêcia de zona DNS com bash</h2>
+
+					<p>
+						A transferência de zona DNS é um dos mecanismos disponíveis para administradores replicarem bases de dados DNS entre servidores. Esse processo utiliza o protocolo TCP na camada de transporte e funciona na estrutura cliente-servidor.<br><br>
+
+						<!-- Terminal Exemplo 3-->
+						<section class="terminal-container">
+							
+							<div class="terminal-header">
+								<span class="dot red"></span>
+								<span class="dot yellow"></span>
+								<span class="dot green"></span>
+								
+								<span class="terminal-title">
+									pauloxc6@github-pages
+							    </span>
+						    </div>
+						
+							<div class="terminal-body">
+								<p class="description">
+									<code class="code-block">
+										#!/usr/bin/env bash<br><br>
+										domain="$1"<br><br>
+
+										for server in $(host -t ns "${domain}" | cut -d " " -f4);do<br>
+										&emsp;	host -l "${domain}" "${server}" <br>
+										done <br><br>
+
+										Uso: <br>
+										user@localhost:~$ bash trans.sh "domain.com"
+									</code>
+								</p>
+							</div>
+						</section>
+					</p>
+					<br>
+
+					<h2>Explicação:</h2>
+					<p>
+					O script automatiza a tentativa de transferência de zona (AXFR) consultando todos os servidores de nome (NS) autoritativos de um domínio target.
+					</p><br>
+
+					<p>
+					Primeiro, ele recebe o alvo como argumento (ex: <code>domain.com</code>) e armazena o valor na variável <code>domain</code>.
+					</p><br>
+
+					<p>
+					Dentro do loop <code>for</code>, o comando <code>host -t ns "${domain}"</code> consulta os registros Name Server do domínio. Em seguida, o <code>cut -d " " -f4</code> trata a saída para extrair apenas os endereços dos servidores DNS retornados.
+					</p><br>
+
+					<p>
+					A cada repetição, o script executa <code>host -l "${domain}" "${server}"</code>, enviando uma requisição de transferência de zona (parâmetro <code>-l</code>) para cada servidor encontrado. Se o servidor de nome estiver vulnerável (com a transferência de zona mal configurada), ele responderá listando todos os registros DNS contidos naquela zona de uma só vez.
+					</p>
+
+					<br><hr class="br-hl"><br>
+
+					<h2>Descobertas de ips dentro de uma rede</h2>
+
+					<p>
+						Há momentos em que estamos dentro de um servidor ou host que não possui as ferramentas necessárias para o nosso uso. Nessas situações, você como administrador precisa saber se virar com o Bash.
+					</p><br>
+
+					<p>
+						Uma forma simples de descobrir hosts ativos na rede é através do comando ping, com o qual conseguimos mapear a sub-rede.
+					</p><br>
+
+					<!-- Terminal Exemplo 4 -->
+					<section class="terminal-container">
+						
+						<div class="terminal-header">
+							<span class="dot red"></span>
+							<span class="dot yellow"></span>
+							<span class="dot green"></span>
+							
+							<span class="terminal-title">
+								pauloxc6@github-pages
+							</span>
+						</div>
+					
+						<div class="terminal-body">
+							<p class="description">
+								<code class="code-block">
+									#!/usr/bin/env bash<br><br>
+									network="$1"<br><br>
+
+									for i in {1..254};do <br> 
+									&emsp;	ping -c 1 "$network"."$i" & <br>
+									done | grep "64 bytes" <br><br>
+
+									Uso: <br>
+									user@localhost:~$ bash discover.sh "192.168.1"
+								</code>
+							</p>
+						</div>
+					</section>
+
+					<br>
+			
+					<h2>Explicação:</h2>
+					<p>
+					O script realiza uma varredura de rede (<em>Ping Sweep</em>) enviando pacotes ICMP para identificar quais hosts estão ativos em um bloco <code>/24</code>.
+					</p><br>
+
+					<p>
+					Ele recebe os três primeiros octetos da sub-rede como parâmetro no terminal (ex: <code>192.168.1</code>) e armazena na variável <code>network</code>.
+					</p><br>
+
+					<p>
+					O loop <code>for</code> percorre de 1 a 254 completando o endereço IP. A cada iteração, o comando <code>ping -c 1</code> envia apenas um pacote de eco para o host correspondente.
+					</p><br>
+
+					<p>
+					Ao adicionar o caractere comercial (<code>&</code>), cada instrução de ping é executada em segundo plano (<em>background process</em>), permitindo testar todos os 254 endereços de forma assíncrona e rápida. Por fim, o <code>grep "64 bytes"</code> filtra a saída e exibe na tela somente as respostas obtidas dos hosts que estão online.
+					</p>
+
+					<br><hr class="br-hl"><br>
+
+					<h2>Port Scan com bash</h2>
+
+					<p>
+						Uma das ferramentas mais importantes que podemos ter em nosso arsenal é o port scanner. Temos o famoso Nmap para essa finalidade, mas se você estiver em um cenário onde não o tem disponível, precisará construir um rapidamente.
+					</p>
+
+					<br>
+
+					<!-- Terminal Exemplo 4 -->
+					<section class="terminal-container">
+						
+						<div class="terminal-header">
+							<span class="dot red"></span>
+							<span class="dot yellow"></span>
+							<span class="dot green"></span>
+							
+							<span class="terminal-title">
+								pauloxc6@github-pages
+							</span>
+						</div>
+					
+						<div class="terminal-body">
+							<p class="description">
+								<code class="code-block">
+									#!/usr/bin/env bash<br><br>
+									host="$1"<br><br>
+
+									for port in {1..65535};do <br>
+									&emsp; (echo >/dev/tcp/"$host"/"$port") 2>/dev/null && echo "[+] Porta $port aberta" <br>
+									done <br><br>
+										
+									Uso: <br>
+									user@localhost:~$ bash pscan.sh "192.168.1.1"
+								</code>
+							</p>
+						</div>
+					</section>
+
+					<br>
+
+					<h2>Explicação:</h2>
+					<p>
+					O script realiza uma varredura de portas TCP (<em>Port Scan</em>) utilizando o pseudo-dispositivo interno do próprio Bash para testar conexões sem a necessidade de ferramentas externas como <code>nmap</code> ou <code>nc</code> (netcat).
+					</p><br>
+
+					<p>
+					Ele recebe o endereço IP ou nome do host como parâmetro no terminal e armazena o valor na variável <code>host</code>.
+					</p><br>
+
+					<p>
+					O loop <code>for</code> percorre o intervalo de portas de 1 a 65535. A cada iteração, a instrução <code>echo &gt;/dev/tcp/"$host"/"$port"</code> tenta abrir um socket TCP com o destino naquela porta específica.
+					</p><br>
+
+					<p>
+					O redirecionamento <code>2&gt;/dev/null</code> descarta todas as mensagens de erro (STDERR) geradas quando uma porta está fechada ou filtrada. O operador lógico <code>&amp;&amp;</code> faz com que a mensagem de porta aberta só seja impressa na tela se a conexão TCP for estabelecida com sucesso (retorno 0 do Bash).
+					</p>
+				
+				</section>
+			</section>
+
+			<footer>
+			    <span>~/pauloxc6</span>
+			    <span>•</span>
+			    <span>Built with Linux &lt;3 @2026</span>
+
+				<div class="footer-links">
+					<a href="/termos.html">Termos de Uso</a>
+					<a href="/privacidade.html">Política de Privacidade</a>
+				</div>
+			</footer>
+
+	    </main>
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q71QZDFR70"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'G-Q71QZDFR70');
+		</script>
+
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9CK8HSD"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+	</body>
+</html>
+<!-- Tá olhando aqui por que? kkk -->
