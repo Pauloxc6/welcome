@@ -5,7 +5,8 @@ const selectedRepositories = [
     "project-homelab",
     "vb-check",
     "hashcrack",
-    "turtle"
+    "turtle",
+    "dotenv"
 ];
 
 const repositories = document.querySelector("#repositories");
