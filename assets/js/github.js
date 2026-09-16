@@ -4,7 +4,8 @@ const selectedRepositories = [
     "academic-resources",
     "project-homelab",
     "vb-check",
-    "hashcrack"
+    "hashcrack",
+    "turtle"
 ];
 
 const repositories = document.querySelector("#repositories");
