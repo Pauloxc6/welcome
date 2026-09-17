@@ -91,3 +91,13 @@ strong {
   border-top: 2px dotted rgb(92, 92, 92);
   border-bottom: 0;
 }
+
+/* ===================================
+Docs Turtle
+====================================== */
+
+.docs-turtle {
+  text-decoration: none;
+  color: #0066cc;
+  font-weight: 700;
+}

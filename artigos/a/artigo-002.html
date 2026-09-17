@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Paulo Santos | Developer & Cybersecurity</title>
+
+        <link rel="stylesheet" href="../../style.css" />
+        <link rel="stylesheet" href="../../artigos/artigos.css" />
+        <link rel="stylesheet" href="../../artigos/assets/base.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../public/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" href="../../public/favicon.ico" />
+        <link rel="manifest" href="../../public/site.webmanifest" />
+
+        <meta name="description" content="Neste artigo irei mostrar o poder do bash em automações de tarefas de recon e enumeração de serviços." />
+        <meta name="keywords" content="Paulo Santos, desenvolvedor, programação, Linux, cybersecurity, segurança da informação, pentest, redes, Bash, Python, PHP, Docker, Git" />
+
+        <meta name="author" content="Paulo Santos" />
+
+        <meta name="robots" content="index, follow" />
+
+        <meta name="language" content="pt-BR" />
+
+        <!-- Canonical -->
+        <link rel="canonical" href="https://pauloxc6.github.io/" />
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Paulo Santos | Desenvolvedor & Cybersecurity" />
+        <meta property="og:description" content="Portfólio, projetos e experiências com programação, Linux, redes e segurança da informação." />
+        <meta property="og:url" content="https://pauloxc6.github.io/" />
+        <meta property="og:site_name" content="Paulo Santos" />
+
+        <!-- Twitter / X -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Paulo Santos | Desenvolvedor & Cybersecurity" />
+        <meta name="twitter:description" content="Portfólio de Paulo Santos — programação, Linux, redes e segurança da informação." />
+
+        <!-- Tema do navegador -->
+        <meta name="theme-color" content="#050505" />
+
+        <!-- Google recaptcha -->
+        <script src="https://www.google.com/recaptcha/enterprise.js?render=6Ld63astAAAAAGvJQuIdii29S-Kse1_VtAWglQcY"></script>
+
+        <!-- Google Tag Manager -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-W9CK8HSD");
+        </script>
+        <!-- End Google Tag Manager -->
+    </head>
+
+    <body>
+        <header class="navbar">
+            <a href="../../index.html" class="nav-logo">paulo@portfolio:~$</a>
+
+            <nav class="nav-links">
+                <a href="../../index.html">Home</a>
+                <a href="../../artigos/index.html" class="active">Artigos</a>
+                <a href="../../index.html#repositories">GitHub</a>
+                <a href="../../cursos/index.html">Cursos</a>
+                <a href="../../g/games.html">Games</a>
+                <a href="../../contato.html">Contato</a>
+            </nav>
+        </header>
+
+        <main class="container">
+            <section class="hero">
+                <div class="tux">
+                    <img src="https://media.tenor.com/bhewUhwCTYYAAAAj/tux-linux-tux.gif" alt="Tux Linux" />
+                </div>
+
+                <div class="content">
+                    <p class="terminal"><span>paulo@github</span>:~$ whoami</p>
+
+                    <h1>Paulo Cezar Santos</h1>
+
+                    <p class="description">Desenvolvedor • Linux • Redes • Cybersecurity</p>
+
+                    <div class="tech-stack">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="artigo-page">
+                <p class="terminal"><span>paulo@artigos</span>:~/artigos/a/turtle-orm$ ls</p>
+
+                <h1>Turtle<span> ORM framework para bash</span></h1>
+
+                <p class="artigo-updated">Última atualização: 17/09/2026</p>
+
+                <section class="artigo-section">
+                    <p>Nesse artigo irei mostrar meu projeto pessoal, que fiz para resolver minha necessidade de trabalhar com banco de dados utilizando Bash.</p>
+
+                    <br />
+
+                    <h2>De onde surgiu a ideia?</h2>
+
+                    <p>
+                        A ideia surgiu de alguns projetos que precisei utilizar SQL justamente com bash. Mas recentemente estava estudando o <a class="docs-turtle" href="https://flask.palletsprojects.com/en/stable/">Flask</a> e o <a class="docs-turtle" href="https://docs.peewee-orm.com/en/latest/"> ORM Peewee</a>, e vi que as facilidades que o Peewee proporciona no desenvolvimento com bancos de dados.
+
+                        <br /><br />
+
+                        Alguns podem pensar qual é a necessidade de se trabalhar com <strong>SQL</strong> em bash? E eu digo: quando você precisar utilizar armazenamento persistente você pensará o contrário, fugindo do padrão de automação de instalação e configuração e construindo aplicações que fogem desse padrão, vai ter a necessidade de se utilizar um banco de dados.
+
+                        <br /><br />
+
+                        É estranho pensar nisso em bash, mas às vezes precisamos pensar fora da caixa e fazer coisas mais diferentes.
+                    </p>
+
+                    <br />
+
+                    <h2>Por que o nome Turtle?</h2>
+
+                    <p>
+                        Eu precisava de um nome interessante para esse projeto, de início, como eu queria um nome simples e que remetesse ao <strong>open source</strong>, olhando para minha mesa, vi meu livro de programação shell script, pensei shell -> casco/concha -> tartaruga. Foi bem isso.
+                    </p>
+
+                    <br />
+
+                    <h2>Como funciona</h2>
+
+                    <p>
+                        Como mencionei a ideia é ser simples, eu usei o Peewee como base para o desenvolvimento. O Turtle surgiu com o objetivo de ser rápido e fácil de utilizar pensei em torná-lo o mais enxuto possível, para que qualquer pessoa possa utilizá-lo.
+
+                        <br /><br />
+
+                        Você começa instalando a biblioteca em seu sistema, por padrão os arquivos são instalados no FHS (Filesystem Hierarchy Standard) do usuário em <strong>$HOME/.local/share</strong> para os arquivos do ORM e em <strong>$HOME/.local/bin</strong> para o binário principal que é importado dentro do seu projeto.
+
+                        <br /><br />
+                    </p>
+
+                    <section class="terminal-container">
+                        <div class="terminal-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+
+                            <span class="terminal-title"> pauloxc6@github-pages </span>
+                        </div>
+
+                        <div class="terminal-body">
+                            <p class="description">
+                                <code class="code-block">
+                                    # Clone o repositório e execute o install.sh <br />
+                                    user@db:~$ git clone https://github.com/Pauloxc6/turtle.git turtle <br />
+                                    user@db:~$ cd turtle <br />
+                                    user@db:~/turtle$ bash install.sh
+
+                                    <br /><br />
+                                    # Run<br />
+                                    user@db:~/turtle$ orm --version<br /><br />
+
+                                    # Importa a biblioteca no seu script Bash <br>
+                                    source "/home/$USER/.local/share/turtle/orm.sh"
+                                </code>
+                            </p>
+                        </div>
+                    </section>
+
+                    <br />
+
+                    <p>
+                        Após a instalação em seu projeto, você pode começar chamando o framework com o comando <strong>source</strong> e o caminho para o <strong>orm.sh</strong>. <br /><br />
+
+                        O primeiro passo é difinir qual tipo de banco de dados será usado, vamos utilizar o sqlite, pois na data de publicação deste artigo, está na versão <strong>v1.0</strong> e só tem suporte ao SQLite. Continuando, é iniciado utilizando o objeto <strong>SqliteDatabase</strong> seu uso é bem simples <strong>SqliteDatabase data.db</strong>.
+
+                        <br /><br />
+
+                        Ao iniciar o objeto o próximo passo é criar as tabelas e definir suas colunas por meio das models. Para criar uma tabela, utilizamos o <strong>SqliteDatabase:create</strong> e para definir a model utilizamos <strong>Model:&lt;TypeField&gt;</strong>. Ex: <br><br>
+                    </p>
+
+                    <section class="terminal-container">
+                        <div class="terminal-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+
+                            <span class="terminal-title"> pauloxc6@github-pages </span>
+                        </div>
+
+                        <div class="terminal-body">
+                            <p class="description">
+                                <code class="code-block"> SqliteDatabase:create customers && BaseModel <br>
+                                Model:TextFiled customers name && BaseModel </code>
+                            </p>
+                        </div>
+                    </section>
+
+                    <br>
+
+                    <p>
+                        <ul>
+                            <li><strong>Obs:</strong> O BaseModel é utilizado para fazer o processamento das models e dos fileds.</li>
+                            <li><strong>Tipos:</strong> Exitem vários tipos de fields, consulte a documentação para mais informações em <a class="docs-turtle" href="https://pauloxc6.github.io/turtle/website/sqlite/#fields">Fields</a>.</li>
+                        </ul>
+                    </p>
+
+                    <br>
+
+                    <p>
+                       Depois de criar as tabelas e as colunas o prómixo passo é inserir e consultar os dados.    
+                    </p>
+
+                    <br>
+
+                    <section class="terminal-container">
+                        <div class="terminal-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+
+                            <span class="terminal-title"> pauloxc6@github-pages </span>
+                        </div>
+
+                        <div class="terminal-body">
+                            <p class="description">
+                                <code class="code-block"> 
+                                    SqliteDatabase:insert customers name "Paulo Santos" && BaseModel <br>
+                                    SqliteDatabase:select customers box
+                                </code>
+                            </p>
+                        </div>
+                    </section>
+
+                    <br>
+                    
+                    <p><ul><li><strong>Obs:</strong> A saída pode ser modifcada através de &lt;json,box,csv&gt informados como último argumento.</li></ul></p><br>
+
+                    <p>Por fim mostrarei como podemos apagar um registro e uma tabela, de forma simples e rápida.</p>
+
+                    <br>
+
+                    <section class="terminal-container">
+                        <div class="terminal-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+
+                            <span class="terminal-title"> pauloxc6@github-pages </span>
+                        </div>
+
+                        <div class="terminal-body">
+                            <p class="description">
+                                <code class="code-block"> 
+                                    SqliteDatabase:delete customers 1 <br>
+                                    SqliteDatabase:drop "customers"
+                                </code>
+                            </p>
+                        </div>
+                    </section>
+
+                    <br>
+
+                    <p>
+                        Como foi mostrado, é bem simples de se trabalhar com esse ORM. Ele ainda está em fase de desenvolvimento tem muitas coisas para melhorar nele. Em breve, vou trabalhar mais nele, vou colocar o <strong>get</strong> que vai ser possível buscar um registro pelo id, e também suporte a outros bancos de dados como Mysql e Postgresql. <br><br>
+
+                        Foi isso! Espero que gostem desse projeto, desenvolvedores podem contribuir no github enviando seu <a class="docs-turtle" href="https://github.com/Pauloxc6/turtle/pulls">Pull Request</a> ou <a class="docs-turtle" href="https://github.com/Pauloxc6/turtle/issues">Issue</a>, estou aberto a sugestões. Quem se interessar em usar esse projeto você pode consultar a documentação ofical do projeto em <a class="docs-turtle" href="https://pauloxc6.github.io/turtle/website/index.html">QuickStart</a>.
+                    </p>
+                </section>
+            </section>
+
+            <footer>
+                <span>~/pauloxc6</span>
+                <span>•</span>
+                <span>Built with Linux &lt;3 @2026</span>
+
+                <div class="footer-links">
+                    <a href="../../termos.html">Termos de Uso</a>
+                    <a href="../../privacidade.html">Política de Privacidade</a>
+                </div>
+            </footer>
+        </main>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q71QZDFR70"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-Q71QZDFR70");
+        </script>
+
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9CK8HSD" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    </body>
+</html>
+<!-- Tá olhando aqui por que? kkk -->
