@@ -121,6 +121,7 @@
                         <strong>a) Dados fornecidos diretamente por você:</strong> Informações como nome, endereço de e-mail e conteúdo de mensagens enviadas voluntariamente por meio do formulário de
                         contato ou cadastro em newsletters.
                     </p>
+                    <br />
                     <p>
                         <strong>b) Dados de navegação (Registros de Acesso):</strong> Informações técnicas coletadas automaticamente pelo servidor web, tais como endereço IP, tipo de navegador,
                         sistema operacional, páginas visitadas e horários de acesso.
@@ -133,6 +134,7 @@
                         As informações e dados de e-mail enviados através do formulário de contato serão utilizados exclusivamente para responder às solicitações, dúvidas ou propostas comerciais
                         realizadas pelo próprio usuário.
                     </p>
+                    <br />
                     <p>Seus dados não serão utilizados para o envio de spam nem compartilhados com terceiros para fins de marketing direto sem a sua autorização expressa.</p>
                 </section>
 
@@ -142,9 +144,16 @@
                         Este site poderá utilizar cookies e tecnologias de monitoramento para garantir o correto funcionamento da página, mapear preferências do visitante, realizar análises
                         estatísticas de tráfego e aprimorar a experiência de navegação.
                     </p>
+                    <br />
                     <p>
                         Você possui total liberdade para desativar ou filtrar os cookies diretamente nas configurações do seu navegador de internet, ciente de que algumas funcionalidades do site podem
                         ser afetadas.
+                    </p>
+                    <br />
+                    <p>Cookies de desempenho podem ser armazenados no seu navegador para mapeamento de métricas. Você pode alterar a sua preferência a qualquer momento abaixo:</p>
+                    <br />
+                    <p>
+                        <button id="reset-cookie-preference" class="btn-cookie btn-reject">Redefinir Preferências de Cookies</button>
                     </p>
                 </section>
 
@@ -154,6 +163,7 @@
                         O site pode utilizar provedores e serviços externos confiáveis para suporte em hospedagem de infraestrutura, análise de tráfego, segurança da aplicação, distribuição de
                         conteúdo (CDN) ou intermediadores de pagamento em caso de cursos e produtos digitais.
                     </p>
+                    <br />
                     <p>Essas plataformas parceiras possuem suas próprias políticas de privacidade e cumprem padrões de proteção e tratamento de dados aplicáveis aos seus respectivos serviços.</p>
                 </section>
 
@@ -182,6 +192,20 @@
                 </section>
             </section>
 
+            <!-- Banner de Consentimento de Cookies -->
+            <div id="cookie-banner" class="cookie-banner" style="display: none">
+                <div class="cookie-content">
+                    <p>
+                        Utilizamos cookies de análise (Google Analytics) para melhorar a documentação. Você pode aceitar ou recusar o rastreamento.
+                        <a href="./privacidade.html">Saiba mais</a>.
+                    </p>
+                    <div class="cookie-buttons">
+                        <button id="cookie-reject" class="btn-cookie btn-reject">Recusar</button>
+                        <button id="cookie-accept" class="btn-cookie btn-accept">Aceitar</button>
+                    </div>
+                </div>
+            </div>
+
             <footer>
                 <div class="footer-main">
                     <span>~/pauloxc6</span>
@@ -197,16 +221,7 @@
         </main>
 
         <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q71QZDFR70"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-
-            gtag("config", "G-Q71QZDFR70");
-        </script>
+        <script src="./assets/js/cookies.js"></script>
 
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9CK8HSD" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
