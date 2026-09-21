@@ -1,0 +1,66 @@
+/* Estilos dedicados para a vitrine de produtos */
+.sales-header {
+    margin-bottom: 2rem;
+}
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.product-card {
+    background-color: #0d0d0d;
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.product-card:hover {
+    border-color: #10b981;
+    transform: translateY(-3px);
+}
+.product-badge {
+    align-self: flex-start;
+    font-size: 0.75rem;
+    background-color: #064e3b;
+    color: #34d399;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    font-family: monospace;
+}
+.product-title {
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+.product-description {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+}
+.product-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #10b981;
+    margin-bottom: 1rem;
+    font-family: monospace;
+}
+.btn-buy {
+    display: block;
+    text-align: center;
+    background-color: #10b981;
+    color: #000;
+    font-weight: bold;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+.btn-buy:hover {
+    background-color: #059669;
+}

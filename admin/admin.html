@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Dashboard | Paulo Santos</title>
+
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="./admin.css" />
+        <link rel="icon" type="image/png" href="../public/favicon.ico" />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="theme-color" content="#050505" />
+
+        <!-- Chart.js CDN para gráficos -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <main class="admin-container">
+            <!-- TELA DE LOGIN -->
+            <section id="login-section" class="login-box">
+                <p class="terminal"><span>paulo@admin</span>:~$ sudo login</p>
+                <h2 style="margin-bottom: 1.5rem">Acesso Administrativo</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" class="form-control" required placeholder="admin@dominio.com" />
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" class="form-control" required placeholder="••••••••" />
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%">Entrar</button>
+                </form>
+            </section>
+
+            <!-- TELA DO PAINEL ADMIN (OCULTA ATÉ LOGAR) -->
+            <section id="dashboard-section" style="display: none">
+                <header class="admin-header">
+                    <div>
+                        <p class="terminal"><span>paulo@admin</span>:~/dashboard$ status --active</p>
+                        <h1 style="margin: 0">Painel de Controle</h1>
+                    </div>
+                    <button id="btn-logout" class="btn btn-danger">Sair</button>
+                </header>
+
+                <!-- MÉTRICAS PRINCIPAIS -->
+                <div class="card-grid">
+                    <div class="metric-card">
+                        <div class="metric-title">Faturamento Total</div>
+                        <div class="metric-value" id="total-faturamento">R$ 0,00</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-title">Total de Vendas</div>
+                        <div class="metric-value" id="total-vendas">0</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-title">Produtos Ativos</div>
+                        <div class="metric-value" id="total-produtos">0</div>
+                    </div>
+                </div>
+
+                <!-- ABAS DE NAVEGAÇÃO -->
+                <nav class="tabs-nav">
+                    <button class="tab-btn active" data-tab="tab-dashboard">Dashboard & Gráficos</button>
+                    <button class="tab-btn" data-tab="tab-produtos">Gerenciar Produtos (vendas.html)</button>
+                    <button class="tab-btn" data-tab="tab-vendas">Histórico de Vendas</button>
+                    <button class="tab-btn" data-tab="gerenciar-cursos">Gerenciar Cursos</button>
+                </nav>
+
+                <!-- ABA 1: DASHBOARD / GRÁFICOS -->
+                <div id="tab-dashboard" class="tab-content active">
+                    <div class="chart-wrapper">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- ABA 2: GERENCIAR PRODUTOS -->
+                <div id="tab-produtos" class="tab-content">
+                    <h3 style="margin-bottom: 1rem">Cadastrar Novo Produto</h3>
+                    <form id="product-form" style="background: #0d0d0d; border: 1px solid #1f2937; padding: 1.25rem; border-radius: 8px; margin-bottom: 2rem">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem">
+                            <div class="form-group">
+                                <label>Nome do Produto / Serviço</label>
+                                <input type="text" id="prod-nome" class="form-control" required placeholder="Ex: Script Hardening" />
+                            </div>
+                            <div class="form-group">
+                                <label>Categoria</label>
+                                <input type="text" id="prod-categoria" class="form-control" required placeholder="Ex: Script, Consultoria" />
+                            </div>
+                            <div class="form-group">
+                                <label>Preço (R$)</label>
+                                <input type="number" step="0.01" id="prod-preco" class="form-control" required placeholder="49.90" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição Curta</label>
+                            <input type="text" id="prod-desc" class="form-control" required placeholder="Descrição que aparecerá no card do produto" />
+                        </div>
+                        <div class="form-group">
+                            <label>Link de Checkout (Kiwify, Hotmart, Mercado Pago ou Contato)</label>
+                            <input type="url" id="prod-link" class="form-control" required placeholder="https://pay.kiwify.com.br/..." />
+                        </div>
+                        <button type="submit" class="btn">Cadastrar Produto</button>
+                    </form>
+
+                    <h3>Produtos Cadastrados no Catálogo</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Link Checkout</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="produtos-table-body">
+                            <tr>
+                                <td colspan="5" style="color: #6b7280">Carregando produtos...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ABA 3: HISTÓRICO DE VENDAS -->
+                <div id="tab-vendas" class="tab-content">
+                    <h3>Registros de Pedidos & Vendas</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Produto</th>
+                                <th>Cliente E-mail</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vendas-table-body">
+                            <tr>
+                                <td colspan="4" style="color: #6b7280">Carregando vendas...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Aba/Seção de Gerenciar Cursos -->
+                <div id="gerenciar-cursos" class="tab-content">
+                    <h3>Cadastrar Novo Curso</h3>
+                    <form id="course-form">
+                        <input type="text" id="course-nome" placeholder="Nome do Curso (ex: Bash Scripting)" required />
+
+                        <select id="course-categoria" required>
+                            <option value="programming">Programação</option>
+                            <option value="networking">Redes</option>
+                            <option value="cybersecurity">Cybersecurity</option>
+                            <option value="linux">Linux</option>
+                        </select>
+
+                        <input type="number" step="0.01" id="course-preco" placeholder="Preço (R$)" required />
+                        <input type="text" id="course-icon" placeholder="Ícone ou Emoji (ex: >_ ou 🔐)" required />
+                        <input type="text" id="course-tech" placeholder="Linguagem/Tech (ex: 💻 Bash)" required />
+                        <input type="text" id="course-nivel" placeholder="Nível (ex: 📚 Intermediário)" required />
+                        <textarea id="course-desc" placeholder="Descrição Curta" required></textarea>
+                        <input type="url" id="course-link" placeholder="Link Hotmart/Kiwify" required />
+
+                        <button type="submit" class="btn btn-primary">Cadastrar Curso</button>
+
+                        <!-- Dentro da div de gerenciar cursos, abaixo do #course-form -->
+                        <div class="items-list" style="margin-top: 2rem">
+                            <h4 style="color: #00ff66; font-family: monospace; margin-bottom: 1rem">Cursos Cadastrados</h4>
+
+                            <!-- Os cards dos cursos cadastrados vão aparecer aqui -->
+                            <div id="lista-cursos-admin">
+                                <p style="color: #9ca3af; font-family: monospace">A carregar cursos...</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <!-- SCRIPT FIREBASE V10 + LÓGICA DO ADMIN -->
+        <script type="module" src="../assets/js/firebase.js"></script>
+
+        <script type="module" src="../assets/js/admin.js"></script>
+    </body>
+</html>

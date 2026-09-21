@@ -1,0 +1,234 @@
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1f2937;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.metric-card {
+    background-color: #0d0d0d;
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+    padding: 1.25rem;
+}
+.metric-title {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    margin-bottom: 0.5rem;
+}
+.metric-value {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #10b981;
+    font-family: monospace;
+}
+.tabs-nav {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid #1f2937;
+    margin-bottom: 1.5rem;
+}
+.tab-btn {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    border-bottom: 2px solid transparent;
+}
+.tab-btn.active {
+    color: #10b981;
+    border-bottom-color: #10b981;
+    font-weight: bold;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    color: #d1d5db;
+    margin-bottom: 0.35rem;
+}
+.form-control {
+    width: 100%;
+    background-color: #0d0d0d;
+    border: 1px solid #1f2937;
+    color: #fff;
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.form-control:focus {
+    border-color: #10b981;
+    outline: none;
+}
+.btn {
+    background-color: #10b981;
+    color: #000;
+    font-weight: bold;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn:hover {
+    background-color: #059669;
+}
+.btn-danger {
+    background-color: #ef4444;
+    color: #fff;
+}
+.btn-danger:hover {
+    background-color: #dc2626;
+}
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #0d0d0d;
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.data-table th,
+.data-table td {
+    padding: 0.85rem;
+    text-align: left;
+    border-bottom: 1px solid #1f2937;
+    font-size: 0.9rem;
+}
+.data-table th {
+    background-color: #111827;
+    color: #9ca3af;
+    font-weight: 600;
+}
+.login-box {
+    max-width: 400px;
+    margin: 4rem auto;
+    background-color: #0d0d0d;
+    border: 1px solid #1f2937;
+    padding: 2rem;
+    border-radius: 8px;
+}
+.chart-wrapper {
+    background-color: #0d0d0d;
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    max-height: 350px;
+}
+
+/* ==========================================================================
+   Estilização do Formulário de Cursos (Tema Terminal Dark)
+   ========================================================================== */
+
+/* Seção/Container do formulário */
+#gerenciar-cursos,
+.gerenciar-cursos-container {
+    margin-top: 1.5rem;
+    padding: 1rem 0;
+}
+
+#gerenciar-cursos h3,
+.gerenciar-cursos-container h3 {
+    color: #00ff66; /* Verde Matrix/Terminal */
+    font-family: monospace;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+/* Layout do Formulário em Grid */
+#course-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    background-color: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+/* Campos que devem ocupar a largura toda (Descrição, Link e Botão) */
+#course-form textarea,
+#course-form #course-link,
+#course-form button[type="submit"] {
+    grid-column: 1 / -1;
+}
+
+/* Estilo padrão de todos os Inputs, Selects e Textareas */
+#course-form input,
+#course-form select,
+#course-form textarea {
+    width: 100%;
+    background-color: #121212;
+    border: 1px solid #2a2a2a;
+    color: #e0e0e0;
+    padding: 0.65rem 0.85rem;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+/* Efeito de Foco nos Inputs */
+#course-form input:focus,
+#course-form select:focus,
+#course-form textarea:focus {
+    border-color: #00ff66;
+    box-shadow: 0 0 5px rgba(0, 255, 102, 0.2);
+}
+
+/* Estilização da Textarea */
+#course-form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Botão Cadastrar Curso */
+#course-form button[type="submit"] {
+    background-color: #00ff66;
+    color: #000;
+    font-weight: bold;
+    font-family: monospace;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+#course-form button[type="submit"]:hover {
+    background-color: #00cc52;
+}
+
+#course-form button[type="submit"]:active {
+    transform: scale(0.99);
+}
