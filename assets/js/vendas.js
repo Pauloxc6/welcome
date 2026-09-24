@@ -7,7 +7,8 @@ const firebaseConfig = {
     projectId: "portifolio-vendas-f963a",
     storageBucket: "portifolio-vendas-f963a.firebasestorage.app",
     messagingSenderId: "345527982066",
-    appId: "1:345527982066:web:77ac0c088408d383b03d6b"
+    appId: "1:345527982066:web:77ac0c088408d383b03d6b",
+    measurementId: "G-FJ668BYLMB"
 };
 
 const app = initializeApp(firebaseConfig);
