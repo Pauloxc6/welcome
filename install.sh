@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# ==============================================================================
+# Variáveis Globais de Cores ANSI
+# ==============================================================================
 export RESET="\e[0m"
 export RED="\e[31;1m"
 export GREEN="\e[32;1m"
@@ -9,6 +12,9 @@ export PURPLE="\e[35;1m"
 export CYAN="\e[36;1m"
 export WHITE="\e[37;1m"
 
+# ==============================================================================
+# Configurações de Caminhos e Repositório Remoto
+# ==============================================================================
 readonly zoran_default="${HOME}/.local/share/zoran"
 readonly rootdir="https://raw.githubusercontent.com/Pauloxc6/zoran/refs/heads/main/zoran.sh"
 readonly path="${HOME}/.local/share"
@@ -16,13 +22,16 @@ readonly bin="${HOME}/.local/bin"
 
 echo -e "${GREEN}[+]${RESET} Install zoran"
 
+# Apenas garante que as pastas pai (~/.local/share e ~/.local/bin) existem
 dirs=(
     "${bin}"
     "${path}"
 )
 
-# * Verifica se os diretórios necessários existem
-echo -e "${YELLOW}[*]${RESET} Verificando se os diretórios existem"
+# ==============================================================================
+# Verificação e Criação da Estrutura Base (~/.local/bin e ~/.local/share)
+# ==============================================================================
+echo -e "${YELLOW}[*]${RESET} Verificando se os diretórios base existem"
 for dir in "${dirs[@]}"; do
     if [[ ! -d "${dir}" ]]; then
         echo -e "${YELLOW}[${dir}]${RESET} Diretório não existe"
@@ -35,7 +44,9 @@ for dir in "${dirs[@]}"; do
     fi
 done
 
-# * Verifica se já existe uma instalação
+# ==============================================================================
+# Checagem de Instalação Existente e Remoção Limpa
+# ==============================================================================
 if [[ -d "${zoran_default}" ]]; then
     echo -e "${YELLOW}[!]${RESET} Uma versão do zoran já está instalada"
     read -rp "[?] Deseja remover a versão atual? [s/N] " sn
@@ -57,35 +68,42 @@ if [[ -d "${zoran_default}" ]]; then
         ;;
 
         n|nao|não|"") echo -e "${CYAN}[*]${RESET} Instalação atual será mantida" ;;
-        \*) echo -e "${RED}[!]${RESET} Opção inválida" ; exit 1 ;;
+        *) echo -e "${RED}[!]${RESET} Opção inválida" ; exit 1 ;;
     esac
 fi
 
-# * Cria o diretório de instalação
+# ==============================================================================
+# Criação do Diretório de Instalação do Zoran
+# ==============================================================================
+echo -e "${BLUE}[+]${RESET} Criando diretório de instalação"
 
-echo -e "${BLUE}[+]${RESET} Criando diretório raiz"
-
-if [[ ! -d "${path}" ]]; then
-    if ! mkdir -p "${path}"; then
-        echo -e "${RED}[!]${RESET} Falha ao criar diretório raiz"
+if [[ ! -d "${zoran_default}" ]]; then
+    if ! mkdir -p "${zoran_default}"; then
+        echo -e "${RED}[!]${RESET} Falha ao criar diretório de instalação"
         exit 1
     fi
 fi
 
-# * Inicia a cópia dos arquivos
+# ==============================================================================
+# Download do Script Principal do Zoran
+# ==============================================================================
 echo -e "${BLUE}[+]${RESET} Iniciando cópia dos arquivos"
-if ! git clone "${rootdir}" "${path}"; then
+if ! curl -s "${rootdir}" -o "${zoran_default}/zoran.sh"; then
     echo -e "${RED}[!]${RESET} Falha ao copiar os arquivos"
     exit 1
 fi
 
-# * Define o zoran como executável
+# ==============================================================================
+# Concessão de Permissão de Execução
+# ==============================================================================
 if ! chmod +x "${zoran_default}/zoran.sh"; then
     echo -e "${RED}[!]${RESET} Falha ao definir permissão de execução"
     exit 1
 fi
 
-# * Cria o link simbólico para o comando zoran
+# ==============================================================================
+# Criação do Link Simbólico em ~/.local/bin/zoran
+# ==============================================================================
 if [[ -e "${bin}/zoran" || -L "${bin}/zoran" ]]; then
     rm -f "${bin}/zoran"
 fi
@@ -95,5 +113,8 @@ if ! ln -s "${zoran_default}/zoran.sh" "${bin}/zoran"; then
     exit 1
 fi
 
+# ==============================================================================
+# Finalização do Processo de Instalação
+# ==============================================================================
 echo -e "${GREEN}[+]${RESET} zoran instalado com sucesso!"
 echo -e "${CYAN}[+]${RESET} Execute '${WHITE}zoran --version${RESET}' para verificar a instalação"
