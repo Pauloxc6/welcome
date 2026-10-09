@@ -2,7 +2,7 @@ const username = "Pauloxc6";
 
 const selectedRepositories = [
     "academic-resources",
-    "project-homelab",
+    "zoran",
     "vb-check",
     "hashcrack",
     "turtle",
